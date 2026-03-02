@@ -2,6 +2,9 @@
 
 a dual-stage analysis architecture that processes large volumes of customer feedback data. it performs instantaneous sentiment classification using lightweight neural networks, and routes complex negative feedback to large language models (qwen) to synthesize actionable resolutions without storing permanent data.
 
+
+![https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3pkZGFrZmd0Z2c0cTdlOGl4emw1dzd5b2liNGY0ZzV0d3N5MGxmeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Dh5q0sShxgp13DwrvG/giphy.gif]
+
 ## tech stack
 - frontend: next.js, react, vanilla css
 - backend: python serverless functions
