@@ -61,14 +61,14 @@ def generate_suggestions(negative_texts, hf_token):
     for attempt in range(3):
         try:
             completion = client.chat.completions.create(
-                model="Qwen/Qwen2.5-72B-Instruct",
+                model="meta-llama/Llama-3.3-70B-Instruct",
                 messages=[{"role": "user", "content": prompt}],
-                max_tokens=300
+                max_tokens=300,
+                temperature=0.3
             )
             raw_output = completion.choices[0].message.content
-            # Qwen 2.5 is a standard instruct model, but we keep parse_think_and_answer just in case
             return parse_think_and_answer(raw_output)
-            
+
         except Exception as e:
             error_str = str(e).lower()
             if "429" in error_str or "503" in error_str or "rate limit" in error_str:
