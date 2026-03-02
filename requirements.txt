@@ -1,0 +1,2 @@
+# No heavy ML dependencies needed for HF Inference API proxy
+huggingface_hub==0.29.1

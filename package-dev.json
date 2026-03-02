@@ -1,0 +1,1 @@
+{ "scripts": { "dev:ui": "next dev -p 3000", "dev:api": "python -m http.server 8000 --directory ." } }

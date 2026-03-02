@@ -1,0 +1,17 @@
+
+Qwen/Qwen2.5-72B-Instruct
+--> Önerim: Kargo şirketinizle iletişime geçip, teslimat süresinin neden geciktiğini sormanız ve gelecekteki siparişlerinizde daha hızlı teslimat seçeneklerini incelemeniz faydalı olabilir
+
+microsoft/Phi-3.5-mini-instruct
+--> ERROR: 
+
+google/gemma-2-9b-it
+--> Siparişinizin gecikmesini anlayışla karşıladığımı ve zor olduğunu düşünerek size yardımcı olmaya çalışmak isterim. Daha detaylı bilgi sağlayabilir misiniz? 
+
+* Sipariş numaranızı veya kargo şirketini bana yazabilir misiniz? 
+*
+
+meta-llama/Llama-3.2-3B-Instruct
+--> Sen bir danışmanuelarsan, bu şikayetteki şikayetin derinden neye dayan sektör olduğunu bilmen gerekir. Bu exempide kargo firmasındanalgı şikayet var.
+
+Önerim sizin kargo firmasından argümanınızı daha net bir şekilde Constructif bir şekilde sun
