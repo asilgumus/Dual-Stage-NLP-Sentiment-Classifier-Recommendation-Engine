@@ -94,9 +94,46 @@ export default function Home() {
         throw new Error(errorData.error || `Server returned ${response.status}`);
       }
 
-      const data = await response.json();
+      let data = await response.json();
       if (data.error) {
         throw new Error(data.error);
+      }
+
+      // Check if we need to run generative AI
+      if (data.is_bulk && data.stats && data.stats.negative.count > 0 && data.negative_examples) {
+        try {
+          const genRes = await fetch('/api/generate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ negative_texts: data.negative_examples, hf_token: hfToken })
+          });
+          const genData = await genRes.json();
+          if (genData.suggestion) {
+            data.improvement_suggestion = genData.suggestion;
+          } else if (genData.error) {
+            console.error("Gen Error:", genData.error);
+            data.improvement_suggestion = genData.error;
+          }
+        } catch (e) {
+          console.error("Error communicating with Gen API:", e);
+        }
+      } else if (!data.is_bulk && data.label === 'NEGATIVE') {
+        try {
+          const genRes = await fetch('/api/generate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ negative_texts: [textsArray[0]], hf_token: hfToken })
+          });
+          const genData = await genRes.json();
+          if (genData.suggestion) {
+            data.improvement_suggestion = genData.suggestion;
+          } else if (genData.error) {
+            console.error("Gen Error:", genData.error);
+            data.improvement_suggestion = genData.error;
+          }
+        } catch (e) {
+          console.error("Error communicating with Gen API:", e);
+        }
       }
 
       setResult(data);

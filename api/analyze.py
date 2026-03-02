@@ -144,9 +144,7 @@ class handler(BaseHTTPRequestHandler):
                     "score": float(f"{score:.3f}")
                 }
                 if label == "NEGATIVE" and hf_token:
-                    suggestion = generate_suggestions([texts[0]], hf_token)
-                    if suggestion:
-                        response_data["improvement_suggestion"] = suggestion
+                    response_data["negative_examples"] = [texts[0]]
             else:
                 total = len(all_results)
                 pos_count = sum(1 for r in all_results if r.get('label') == 'POSITIVE')
@@ -177,10 +175,7 @@ class handler(BaseHTTPRequestHandler):
                 
                 if neg_count > 0 and hf_token:
                     negative_texts = [texts[i] for i, r in enumerate(all_results) if r.get('label') == 'NEGATIVE']
-                    # Limit to max 5 texts for API safety
-                    suggestion = generate_suggestions(negative_texts[:5], hf_token)
-                    if suggestion:
-                        response_data["improvement_suggestion"] = suggestion
+                    response_data["negative_examples"] = negative_texts[:5]
 
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
